@@ -21,11 +21,12 @@ userRoutes.post('/signup', async (c)=>{
   
     try {
       const body = await c.req.json();
+      console.log(body)
       const {success} = signupInput.safeParse(body)
       if(!success){
         c.status(411)
         return c.json({
-          msg : "invalide input"
+          msg : "invalid input"
         })
       }
 
@@ -42,6 +43,7 @@ userRoutes.post('/signup', async (c)=>{
       })
   
       if(validateUser){
+        c.status(411)
         return c.json({
           msg : "User exits"
         })
